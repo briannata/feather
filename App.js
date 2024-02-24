@@ -4,40 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-// TODO: move screens into individual files
-
-function Feed() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed!</Text>
-    </View>
-  );
-}
-
-function Profile() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile!</Text>
-    </View>
-  );
-}
-
-function Encyclopedia() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Encyclopedia!</Text>
-    </View>
-  );
-}
-
-function Upload() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Upload!</Text>
-    </View>
-  );
-}
+import Feed from './Pages/Feed';
+import Profile from './Pages/Profile';
+import Encyclopedia from './Pages/Encyclopedia';
+import Upload from './Pages/Upload';
 
 const Tab = createBottomTabNavigator();
 
