@@ -1,15 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Feed from './Pages/Feed';
 import Profile from './Pages/Profile';
 import Encyclopedia from './Pages/Encyclopedia';
 import Upload from './Pages/Upload';
+import Home from './Pages/Home';
+import Register from './Pages/Register';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 function MyTabs() {
   return (
@@ -59,6 +61,16 @@ function MyTabs() {
           ),
         }}
       />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home-circle" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -66,8 +78,22 @@ function MyTabs() {
 export default function App() {
   return (
     <NavigationContainer>
-      <MyTabs />
+      <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
+      <Stack.Screen 
+          name=" "
+          component={MyTabs}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{title: 'Welcome'}}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
+    
   );
 }
 
