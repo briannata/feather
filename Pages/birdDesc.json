@@ -3,15 +3,18 @@
     "birds": [
     {
         "name": "Common Ostrich",
-        "description": "Massive, conspicuous, flightless bird with long neck and robust legs. Mature males have black-and-white plumage, with pinkish skin, flushed in breeding plumage. Females and immatures are duller gray-brown. Small groups roam open and lightly-wooded country; can walk up to several kilometers a day. The stubby wings are used for spectacular breeding displays and dust-bathing. Deep booming calls can be heard from long distances. Similar Somali Ostrich (no range overlap) has slaty-colored skin and pale eyes, unlike the pink-skinned Common Ostrich."
+        "description": "Massive, conspicuous, flightless bird with long neck and robust legs. Mature males have black-and-white plumage, with pinkish skin, flushed in breeding plumage. Females and immatures are duller gray-brown. Small groups roam open and lightly-wooded country; can walk up to several kilometers a day. The stubby wings are used for spectacular breeding displays and dust-bathing. Deep booming calls can be heard from long distances. Similar Somali Ostrich (no range overlap) has slaty-colored skin and pale eyes, unlike the pink-skinned Common Ostrich.",
+        "image": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/221510791/1200"
     },
     {
         "name": "Somali Ostrich",
-        "description": "A long-legged and long-necked flightless bird. Males have a blue-gray neck and legs, but the bill and front of the legs become pink when breeding. Females have dull pinkish-colored legs and neck. Found in a variety of dry habitats, including grassland, thornscrub, and semi-desert. Often in small groups. Very similar to Common Ostrich, but males separated by their blue legs and neck and the lack of a white ring at the base of the neck. Females are separated by their pale eyes. The voice is a deep, lion-like booming."
+        "description": "A long-legged and long-necked flightless bird. Males have a blue-gray neck and legs, but the bill and front of the legs become pink when breeding. Females have dull pinkish-colored legs and neck. Found in a variety of dry habitats, including grassland, thornscrub, and semi-desert. Often in small groups. Very similar to Common Ostrich, but males separated by their blue legs and neck and the lack of a white ring at the base of the neck. Females are separated by their pale eyes. The voice is a deep, lion-like booming.",
+        "image": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/244378051/1200"
     },
     {
         "name": "Greater Rhea",
-        "description": "The largest bird in South America; resembles an ostrich and is unmistakable. Flightless and appears tailless. Mostly gray-brown overall with very long legs and neck and a proportionally small head. Males have a dark brown crown and blackish lower neck and upperparts. Females have lighter plumage. Juveniles look similar to adults but are smaller. Inhabits open areas with scattered trees and shrubs, such as savannas and pampas, where it can gather in large groups. The males are responsible for incubating the eggs and looking after the chicks."
+        "description": "The largest bird in South America; resembles an ostrich and is unmistakable. Flightless and appears tailless. Mostly gray-brown overall with very long legs and neck and a proportionally small head. Males have a dark brown crown and blackish lower neck and upperparts. Females have lighter plumage. Juveniles look similar to adults but are smaller. Inhabits open areas with scattered trees and shrubs, such as savannas and pampas, where it can gather in large groups. The males are responsible for incubating the eggs and looking after the chicks.",
+        "image": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/183424001/1200"
     },
     {
         "name": "Lesser Rhea",

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, ActivityIndicator, ScrollView, Picker } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ActivityIndicator, ScrollView, Picker, Image } from 'react-native';
 // import CollapsibleView from './CollapsibleView';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from 'react-native-web';
@@ -12,6 +12,7 @@ function Encyclopedia() {
   const [isLoading, setLoading] = useState(true);
   const [birds, setBirds] = useState([]);
   const [birdsDesc, setBirdsDesc] = useState([]);
+  const [birdsImg, setBirdsImg] = useState([]);
 
   const [filteredBirds, setFilteredBirds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -46,12 +47,33 @@ function Encyclopedia() {
         acc[bird.name] = bird.description;
         return acc;
       }, {}));
-
+      setBirdsImg(birdDesc.birds.reduce((acc, bird) => {
+        // reduce - transform array into object 
+        // acc - stores result of each iteration and passes to next iteration
+        acc[bird.name] = bird.image;
+        return acc;
+      }, {}));
       console.log(birdDesc.birds)
 
       const uniqueFamilyComNames = [...new Set(birdData.map(bird => bird.familyComName))];
       const sortedFamilyCommonNames = uniqueFamilyComNames.sort((a, b) => a.localeCompare(b));
       setFamilyCommonNames(sortedFamilyCommonNames);
+
+      // fetching JSON from eBird API
+      // const apiKey = 'aabbee96-1bc2-4433-a3e3-80054f37f803'
+      // const response2 = await fetch('https://nuthatch.lastelm.software/v2/birds',
+      // {method: 'GET',
+      // headers: {
+      //   Authorization: `Bearer + ${apiKey}` // Adding  API key to Authorization header
+      // }});
+      // console.log(response2)
+      // const json2 = await response2.json();
+      // console.log(json2)
+
+      // Mapping the JSON data to variables to be used
+      // const birdImg = json.map(birdImg => ({
+      // }));
+
 
     } catch (error) {
       console.error('Error fetching bird data:', error);
@@ -111,13 +133,19 @@ function Encyclopedia() {
       contentContainerStyle={styles.scrollView}>
         {filteredBirds.map(bird => (
           <View key={bird.name} style={styles.birdContainer}>
-            <Text style={styles.name}>{bird.name}</Text>
-            <Text style={styles.scientificName}>{bird.scientificName}</Text>
-            <span className="showMore" onClick={() => setExpanded(!expanded)}>
-              <AntDesign name="down" size={24} color="black" />
-            </span>
+            <View style={styles.birdCover}>
+              <View>
+                <Text style={styles.name}>{bird.name}</Text>
+                <Text style={styles.scientificName}>{bird.scientificName}</Text>
+                <span className="showMore" onClick={() => setExpanded(!expanded)}>
+                  <AntDesign name="down" size={24} color="black"/>
+                </span>
+              </View>
+              <Image style={styles.logo} source={{ uri: birdsImg[bird.name]}}/>
+            </View>
             {expanded ? (
               <Text style={styles.scientificName}>
+                {/* <Image source={{uri: birdsImg[bird.name]}}/> */}
                 {/* description of bird */}
                 {birdsDesc[bird.name] || "No description available"}
               </Text>
@@ -155,6 +183,14 @@ const styles = StyleSheet.create({
     alignItems: 'left',
     marginLeft: 20,
   },
+  birdCover: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+    padding: 10,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+  },
   birdContainer: {
     marginBottom: 20,
     padding: 10,
@@ -167,6 +203,10 @@ const styles = StyleSheet.create({
   },
   scientificName: {
     fontSize: 16,
+  },
+  logo: {
+    width: 100,
+    height: 100,
   },
   // showMore: {
   //   border: '1px solid black',
