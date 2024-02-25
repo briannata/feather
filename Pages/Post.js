@@ -21,15 +21,15 @@ function Post({route, navigation}) {
                 console.log('Inserted post with ID:', insertId);
                 setDescription('');
                 setBird('');
+                navigation.pop();
+                navigation.navigate('Feed', {'key': insertId});
               },
               (_, error) => {
                 console.error('Error inserting post:', error);
               }
             );
         });
-
-        navigation.pop();
-        navigation.navigate('Feed');
+        
     }
 
     return (

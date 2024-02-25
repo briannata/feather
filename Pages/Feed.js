@@ -13,16 +13,18 @@ const Post = ({bird, description, imageUri}) => (
   </View>
 );
 
-function Feed() {
+function Feed({route}) {
+
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    console.log("here")
     fetchPosts();
-  }, []);
+  }, [route]);
 
   const fetchPosts = () => {
     db.transaction(tx => {
-      tx.executeSql('SELECT * FROM posts;', [], (_, { rows }) => {
+      tx.executeSql('SELECT * FROM posts ORDER BY id DESC;', [], (_, { rows }) => {
         const formattedPosts = rows._array.map(row => {
           return {
             id: row.id,
@@ -35,10 +37,6 @@ function Feed() {
         console.log(formattedPosts)
       });
     });
-  };
-
-  const handleRefresh = () => {
-    setRefreshing(true); // Set refreshing to true to trigger refresh
   };
 
   const renderPost = ({ item }) => {
