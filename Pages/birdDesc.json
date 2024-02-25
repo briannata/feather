@@ -18,11 +18,13 @@
     },
     {
         "name": "Lesser Rhea",
-        "description": "This flightless South American relative of the ostriches stands about 5 feet tall with a body about the size of a sheep; no similar species in its range. Rheas roam widely on open Patagonian steppe and also occur locally in open habitats of the Andes, mainly at very high elevations. Can be confiding where used to people, but in other areas wary, running strongly and quickly. Rheas occur singly or in groups, and males take care of the young. Adults have bold pale spots on the body, first-year birds are plainer overall."
+        "description": "This flightless South American relative of the ostriches stands about 5 feet tall with a body about the size of a sheep; no similar species in its range. Rheas roam widely on open Patagonian steppe and also occur locally in open habitats of the Andes, mainly at very high elevations. Can be confiding where used to people, but in other areas wary, running strongly and quickly. Rheas occur singly or in groups, and males take care of the young. Adults have bold pale spots on the body, first-year birds are plainer overall.",
+        "image": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/115691341/900"
     },
     {
         "name": "Tawny-breasted Tinamou",
-        "description": "Plump chickenlike bird found on the ground inside montane forest from extreme western Venezuela to extreme northern Peru. Dark brownish overall with a paler throat, messy vermiculation on the upperparts and flanks, and a warm tawny belly. Occurs from around 1,500m-3,200m, within forest. Very rarely seen. Listen for its song, a series of repeated querulous notes."
+        "description": "Plump chickenlike bird found on the ground inside montane forest from extreme western Venezuela to extreme northern Peru. Dark brownish overall with a paler throat, messy vermiculation on the upperparts and flanks, and a warm tawny belly. Occurs from around 1,500m-3,200m, within forest. Very rarely seen. Listen for its song, a series of repeated querulous notes.",
+        "image": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/69426131/1200"
     }
     ]
 }
