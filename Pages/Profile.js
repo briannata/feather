@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth0 } from 'react-native-auth0';
 
@@ -19,30 +19,32 @@ function Profile({navigation}) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.profilePicture}
-        source={{
-          uri: 'https://wallpapers.com/images/hd/cute-bird-pictures-h6mz3ghdofpsxhrf.jpg',
-        }}
-      />
-      <Text style={styles.title}>briannat</Text>
-      <Text style={styles.subtitle}>she/her/hers</Text>
+    <ScrollView>
+      <SafeAreaView style={styles.container}>
+        <Image
+          style={styles.profilePicture}
+          source={{
+            uri: 'https://wallpapers.com/images/hd/cute-bird-pictures-h6mz3ghdofpsxhrf.jpg',
+          }}
+        />
+        <Text style={styles.title}>briannat</Text>
+        <Text style={styles.subtitle}>she/her/hers</Text>
 
-      <Text style={styles.topic}>Location</Text>
-      <Text style={styles.content}>Chapel Hill, North Carolina</Text>
+        <Text style={styles.topic}>Location</Text>
+        <Text style={styles.content}>Chapel Hill, North Carolina</Text>
 
-      <Text style={styles.topic}>Favorite Bird</Text>
-      <Text style={styles.content}>Hummingbird</Text>
+        <Text style={styles.topic}>Favorite Bird</Text>
+        <Text style={styles.content}>Hummingbird</Text>
 
-      <Text style={styles.bio}>Hi everyone, I'm Brianna and I love nature and bird watching. I hope to help make a difference by collecting data for scientists working on tracking bird migration and habits for their ML models. Save the environment!</Text>
+        <Text style={styles.bio}>Hi everyone, I'm Brianna and I love nature and bird watching. I hope to help make a difference by collecting data for scientists working on tracking bird migration and habits for their ML models. Save the environment!</Text>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={onLogout}>
-          <Text style={styles.buttonText}>Log Out</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={onLogout}>
+            <Text style={styles.buttonText}>Log Out</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 
@@ -101,8 +103,7 @@ content: {
   marginBottom: 30
 },
 bio: {
-  marginLeft: 60,
-  marginRight: 50,
+  marginHorizontal: 30,
   marginTop: 30,
   marginBottom: 30
 }
