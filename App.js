@@ -1,6 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -8,15 +10,21 @@ import Feed from './Pages/Feed';
 import Profile from './Pages/Profile';
 import Encyclopedia from './Pages/Encyclopedia';
 import Upload from './Pages/Upload';
+import Register from './Pages/Register';
+import Login from './Pages/Login';
+import Landing from './Pages/Landing';
+import Post from './Pages/Post';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+const UploadStack = createNativeStackNavigator();
 
-function MyTabs() {
+function MyTabs({navigation}) {
   return (
     <Tab.Navigator
       initialRouteName="Feed"
       screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
+        tabBarActiveTintColor: '#45A9CD',
       }}
     >
       <Tab.Screen
@@ -29,16 +37,22 @@ function MyTabs() {
           ),
         }}
       />
-      <Tab.Screen
+      <Tab.Screen 
         name="Upload"
-        component={Upload}
         options={{
           tabBarLabel: 'Upload',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="video" color={color} size={size} />
+            <MaterialCommunityIcons name="camera" color={color} size={size} />
           ),
-        }}
-      />
+        }}>
+          {() => (
+            <UploadStack.Navigator>
+              <UploadStack.Screen name="Record" component={Upload} />
+              <UploadStack.Screen name="Post" component={Post} />
+            </UploadStack.Navigator>
+          )}
+          
+        </Tab.Screen>
       <Tab.Screen
         name="Encyclopedia"
         component={Encyclopedia}
@@ -63,10 +77,29 @@ function MyTabs() {
   );
 }
 
-export default function App() {
+export default function App({navigation}) {
+
   return (
-    <NavigationContainer>
-      <MyTabs />
+    <NavigationContainer style={styles.container}>
+      <Stack.Navigator
+      initialRouteName="Landing"
+      screenOptions={{
+        headerShown: false
+      }}>
+        <Stack.Screen name="Landing" component={Landing}/>
+        <Stack.Screen
+          name="Register"
+          component={Register}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+        />
+        <Stack.Screen 
+        name="MyTabs"
+        component={MyTabs}
+      />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
@@ -74,8 +107,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#F7F7E8',
   },
 });

@@ -1,6 +1,8 @@
 import { Text, View } from 'react-native';
 
-function Feed() {
+
+function Feed({route, navigation}) {
+  
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Feed!</Text>

@@ -4,8 +4,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -14,10 +14,14 @@
     "@mui/icons-material": "^5.15.11",
     "@mui/material": "^5.15.11",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-masked-view/masked-view": "0.3.0",
     "@react-navigation/bottom-tabs": "^6.5.14",
     "@react-navigation/native": "^6.1.12",
     "@react-navigation/native-stack": "^6.9.20",
+    "@react-navigation/stack": "^6.3.23",
     "expo": "~50.0.7",
+    "expo-camera": "~14.0.5",
+    "expo-image-picker": "~14.7.1",
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -33,7 +37,11 @@
     "@expo/cli": "xxx"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "metro-react-native-babel-preset": "^0.77.0"
   },
   "private": true
 }
