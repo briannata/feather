@@ -1,16 +1,25 @@
 import { StyleSheet, View, Text, Button, TouchableOpacity, Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-function Landing({ onLogin, onSignUp }) {
+function Landing({navigation}) {
+
+    const handleLogin = () => {
+        navigation.navigate('Login');
+      };
+    
+      const handleSignUp = () => {
+        navigation.navigate('Register');
+      };
+
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Welcome to Feather!</Text>
             <Image source={require('../assets/feather.png')} style={styles.logo} />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={onLogin}>
+                <TouchableOpacity style={styles.button} onPress={handleLogin}>
                     <Text style={styles.buttonText}>Log In</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.button, styles.signupButton]} onPress={onSignUp}>
+                <TouchableOpacity style={[styles.button, styles.signupButton]} onPress={handleSignUp}>
                     <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
             </View>

@@ -1,7 +1,11 @@
 import { StyleSheet, View, Text, Button, TouchableOpacity, Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-function Profile({onLogout}) {
+function Profile({navigation}) {
+  const onLogout = () => {
+    navigation.navigate('Landing')
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Profile!</Text>

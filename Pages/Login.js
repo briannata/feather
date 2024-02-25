@@ -9,13 +9,12 @@ import {
 
 const Login =  ({navigation}) => {
     const onPressLogin = () => {
-        navigation.navigate('Encyclopedia',
-        {
-          state: {
-            password: state.password,
-            username: state.username,
-          }
-        })
+        // navigation.navigate('MyTabs', {
+        //     state: {
+        //         username: state.username,
+        //     }
+        // })
+        navigation.navigate('MyTabs')
     };
 
     const [state,setState] = useState({
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
     },
     inputText:{
         height:50,
-        color:"white"
+        color:"black"
     },
     loginBtn:{
         width:"80%",

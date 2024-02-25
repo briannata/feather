@@ -1,8 +1,7 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -17,7 +16,7 @@ import Landing from './Pages/Landing';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-function MyTabs({onLogout}) {
+function MyTabs({navigation}) {
   return (
     <Tab.Navigator
       initialRouteName="Feed"
@@ -57,47 +56,28 @@ function MyTabs({onLogout}) {
       />
       <Tab.Screen
         name="Profile"
+        component={Profile}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />
           ),
         }}
-      >
-        {() => <Profile onLogout={onLogout} />}
-      </Tab.Screen>
+      />
     </Tab.Navigator>
   );
 }
 
-export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const handleLogin = () => {
-    // TODO: set up authentication
-    setIsLoggedIn(true);
-  };
-
-  const handleSignUp = () => {
-    // TODO: set up authentication
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    // TODO: set up authentication
-    setIsLoggedIn(false);
-  };
+export default function App({navigation}) {
 
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator
+      initialRouteName="Landing"
       screenOptions={{
         headerShown: false
       }}>
-      <Stack.Screen 
-          name=" "
-          component={MyTabs}
-        />
+        <Stack.Screen name="Landing" component={Landing}/>
         <Stack.Screen
           name="Register"
           component={Register}
@@ -106,7 +86,10 @@ export default function App() {
           name="Login"
           component={Login}
         />
-            {isLoggedIn ? <MyTabs onLogout={handleLogout} /> : <Landing onLogin={handleLogin} onSignUp={handleSignUp}/>}
+        <Stack.Screen 
+        name="MyTabs"
+        component={MyTabs}
+      />
       </Stack.Navigator>
     </NavigationContainer>
   );
