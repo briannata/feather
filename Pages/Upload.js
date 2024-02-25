@@ -1,20 +1,21 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Camera, CameraType } from 'expo-camera';
-import { useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useState, useEffect } from 'react';
+import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
-export default function Upload() {
+export default function Upload({ navigation }) {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [camera, setCamera] = useState(null);
+  const [imageUri, setImageUri] = useState(null);
+  const [videoUri, setVideoUri] = useState(null);
 
   if (!permission) {
-    // Camera permissions are still loading
     return <View />;
   }
 
   if (!permission.granted) {
-    // Camera permissions are not granted yet
     return (
       <View style={styles.container}>
         <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
@@ -29,17 +30,23 @@ export default function Upload() {
 
   const takePicture = async () => {
     if (camera) {
-      const photo = await camera.takePictureAsync();
-      // TODO: save to database
-      console.log('Photo taken:', photo);
+      const photo = await camera.takePictureAsync(null);
+      setImageUri(photo.uri);
+      if (photo) {
+        navigation.navigate('Post', { imageUri: photo.uri });
+      }
     }
   };
 
   const recordVideo = async () => {
     if (camera) {
-      const video = await camera.recordAsync();
-      // TODO: save to database
-      console.log('Video recorded:', video);
+      try {
+        const video = await camera.recordAsync(null);
+        console.log(video.uri);
+        setPhotoUri(video.uri);
+      } catch (error) {
+        console.error('Failed to record video: ', error);
+      }
     }
   };
 
@@ -51,7 +58,7 @@ export default function Upload() {
 
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type}>
+      <Camera style={styles.camera} type={type} ref={(ref) => setCamera(ref)}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
             <Text style={styles.text}>
@@ -60,7 +67,7 @@ export default function Upload() {
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button, styles.buttonLabel]} onPress={takePicture}>
             <MaterialCommunityIcons name="camera-iris" size={30} color="white"></MaterialCommunityIcons>
-            <Text style={styles.text}>Take Picture</Text>
+            <Text style={styles.text}>Photo</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.videoButton]}
@@ -69,7 +76,7 @@ export default function Upload() {
             <View style={styles.buttonLabel}>
               <MaterialCommunityIcons name="camcorder" size={30} color="white"></MaterialCommunityIcons>
               <Text style={styles.text}>
-                {camera?.isRecording ? 'Stop Recording' : 'Record Video'}
+                {camera?.isRecording ? 'Stop' : 'Video'}
               </Text>
             </View>
           </TouchableOpacity>
@@ -83,16 +90,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: '#F7F7E8',
   },
   camera: {
     flex: 1,
+    maxHeight: '80%',
   },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',
     backgroundColor: 'transparent',
     justifyContent: 'space-between',
-    marginBottom: 60,
+    marginBottom: 30,
     marginHorizontal: 10,
   },
   button: {
