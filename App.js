@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
+      initialRouteName="Encyclopedia"
       screenOptions={{
         tabBarActiveTintColor: '#e91e63',
       }}
