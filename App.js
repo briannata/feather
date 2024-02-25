@@ -7,8 +7,8 @@ import Feed from './Pages/Feed';
 import Profile from './Pages/Profile';
 import Encyclopedia from './Pages/Encyclopedia';
 import Upload from './Pages/Upload';
-import Home from './Pages/Home';
 import Register from './Pages/Register';
+import Login from './Pages/Login';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -61,16 +61,6 @@ function MyTabs() {
           ),
         }}
       />
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home-circle" color={color} size={size} />
-          ),
-        }}
-      />
     </Tab.Navigator>
   );
 }
@@ -89,7 +79,10 @@ export default function App() {
         <Stack.Screen
           name="Register"
           component={Register}
-          options={{title: 'Welcome'}}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
         />
       </Stack.Navigator>
     </NavigationContainer>
