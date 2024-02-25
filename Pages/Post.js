@@ -1,26 +1,35 @@
 import { Text, View, Image, StyleSheet, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useState } from 'react';
+import { openDatabase } from 'expo-sqlite';
+
+const db = openDatabase('mydb.db');
 
 function Post({route, navigation}) {
     const {imageUri} = route.params;
     console.log(imageUri)
 
-    const [title, setTitle] = useState('');
     const [bird, setBird] = useState('');
     const [description, setDescription] = useState('');
 
     const handleUpload = async () => {
-        //TODO: upload to database
 
-        const data = {
-            title: title,
-            bird: bird,
-            description: description,
-            imageUri: imageUri,
-        }
-
-        navigation.pop();
-        navigation.navigate('Feed', { data: data });
+        db.transaction(tx => {
+            tx.executeSql(
+              'INSERT INTO posts (description, bird, imageUri) VALUES (?, ?, ?);',
+              [description, bird, imageUri],
+              (_, { insertId }) => {
+                console.log('Inserted post with ID:', insertId);
+                setDescription('');
+                setBird('');
+                navigation.pop();
+                navigation.navigate('Feed', {'key': insertId});
+              },
+              (_, error) => {
+                console.error('Error inserting post:', error);
+              }
+            );
+        });
+        
     }
 
     return (
@@ -30,12 +39,6 @@ function Post({route, navigation}) {
         >
             <View contentContainerStyle={styles.inputContainer}>
                 {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
-                <TextInput
-                    style={styles.input}
-                    placeholder="Title"
-                    onChangeText={text => setTitle(text)}
-                    value={title}
-                />
                 <TextInput
                     style={styles.input}
                     placeholder="Bird"
