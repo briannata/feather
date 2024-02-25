@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, ActivityIndicator, ScrollView, Picker, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ActivityIndicator, ScrollView, Image, Pressable } from 'react-native';
+import { Picker } from '@react-native-picker/picker'
 // import CollapsibleView from './CollapsibleView';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from 'react-native-web';
@@ -118,7 +119,7 @@ function Encyclopedia() {
         value={searchQuery}
         onChangeText={handleSearch}
       />
-      <Picker
+      {/* <Picker
         selectedValue={selectedFilter}
         style={styles.filterPicker}
         onValueChange={(itemValue) => handleFilterChange(itemValue)}
@@ -127,7 +128,7 @@ function Encyclopedia() {
         {familyCommonNames.map((name, index) => (
           <Picker.Item key={index} label={name} value={name} />
         ))}
-      </Picker>
+      </Picker> */}
       <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.scrollView}>
@@ -137,9 +138,9 @@ function Encyclopedia() {
               <View>
                 <Text style={styles.name}>{bird.name}</Text>
                 <Text style={styles.scientificName}>{bird.scientificName}</Text>
-                <span className="showMore" onClick={() => setExpanded(!expanded)}>
+                <Pressable className="showMore" onPress={() => setExpanded(!expanded)}>
                   <AntDesign name="down" size={24} color="black"/>
-                </span>
+                </Pressable>
               </View>
               <Image style={styles.logo} source={{ uri: birdsImg[bird.name]}}/>
             </View>
@@ -164,21 +165,22 @@ const styles = StyleSheet.create({
     alignItems: 'left',
   },
   searchInput: {
-    width: '80%',
+    width: '90%',
     padding: 10,
-    marginBottom: 10,
     marginLeft: 20,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
+    marginTop: 15,
   },
   filterPicker: {
-    width: '80%',
+    width: '90%',
     marginBottom: 10,
     marginLeft: 20,
   },
   scrollView: {
     flexGrow: 1,
+    width: '90%',
     justifyContent: 'left',
     alignItems: 'left',
     marginLeft: 20,
@@ -207,6 +209,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 100,
     height: 100,
+    marginLeft: 50,
   },
   // showMore: {
   //   border: '1px solid black',
