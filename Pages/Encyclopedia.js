@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, ActivityIndicator, ScrollView, Image, Pressable } from 'react-native';
 import { Picker } from '@react-native-picker/picker'
-// import CollapsibleView from './CollapsibleView';
 import { AntDesign } from '@expo/vector-icons';
-import { Button } from 'react-native-web';
-// import Button from "@mui/material/Button";
-// import IconButton from '@mui/material';
-// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
 
 function Encyclopedia() {
   const [isLoading, setLoading] = useState(true);
@@ -27,7 +21,6 @@ function Encyclopedia() {
       // fetching JSON from eBird API
       const response = await fetch('https://api.ebird.org/v2/ref/taxonomy/ebird?fmt=json&cat=species');
       const json = await response.json();
-      console.log(json)
       // Mapping the JSON data to variables to be used
       const birdData = json.map(bird => ({
         name: bird.comName,
@@ -54,27 +47,10 @@ function Encyclopedia() {
         acc[bird.name] = bird.image;
         return acc;
       }, {}));
-      console.log(birdDesc.birds)
 
       const uniqueFamilyComNames = [...new Set(birdData.map(bird => bird.familyComName))];
       const sortedFamilyCommonNames = uniqueFamilyComNames.sort((a, b) => a.localeCompare(b));
       setFamilyCommonNames(sortedFamilyCommonNames);
-
-      // fetching JSON from eBird API
-      // const apiKey = 'aabbee96-1bc2-4433-a3e3-80054f37f803'
-      // const response2 = await fetch('https://nuthatch.lastelm.software/v2/birds',
-      // {method: 'GET',
-      // headers: {
-      //   Authorization: `Bearer + ${apiKey}` // Adding  API key to Authorization header
-      // }});
-      // console.log(response2)
-      // const json2 = await response2.json();
-      // console.log(json2)
-
-      // Mapping the JSON data to variables to be used
-      // const birdImg = json.map(birdImg => ({
-      // }));
-
 
     } catch (error) {
       console.error('Error fetching bird data:', error);
