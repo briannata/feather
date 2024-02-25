@@ -1,22 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Feed from './Pages/Feed';
 import Profile from './Pages/Profile';
 import Encyclopedia from './Pages/Encyclopedia';
 import Upload from './Pages/Upload';
+import Landing from './Pages/Landing';
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function MyTabs({onLogout}) {
   return (
     <Tab.Navigator
       initialRouteName="Feed"
       screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
+        tabBarActiveTintColor: '#45A9CD',
       }}
     >
       <Tab.Screen
@@ -51,22 +53,40 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Profile"
-        component={Profile}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />
           ),
         }}
-      />
+      >
+        {() => <Profile onLogout={onLogout} />}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 }
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const handleLogin = () => {
+    // TODO: set up authentication
+    setIsLoggedIn(true);
+  };
+
+  const handleSignUp = () => {
+    // TODO: set up authentication
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    // TODO: set up authentication
+    setIsLoggedIn(false);
+  };
+
   return (
-    <NavigationContainer>
-      <MyTabs />
+    <NavigationContainer style={styles.container}>
+      {isLoggedIn ? <MyTabs onLogout={handleLogout} /> : <Landing onLogin={handleLogin} onSignUp={handleSignUp}/>}
     </NavigationContainer>
   );
 }
@@ -74,8 +94,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#F7F7E8',
   },
 });
