@@ -108,7 +108,7 @@ export default function App() {
         />
             {isLoggedIn ? <MyTabs onLogout={handleLogout} /> : <Landing onLogin={handleLogin} onSignUp={handleSignUp}/>}
       </Stack.Navigator>
-    
+    </NavigationContainer>
   );
 }
 
