@@ -9,11 +9,6 @@ import {
 
 const Login =  ({navigation}) => {
     const onPressLogin = () => {
-        // navigation.navigate('MyTabs', {
-        //     state: {
-        //         username: state.username,
-        //     }
-        // })
         navigation.navigate('MyTabs')
     };
 

@@ -1,10 +1,22 @@
 import { StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useAuth0 } from 'react-native-auth0';
 
 function Profile({navigation}) {
   const onLogout = () => {
-    navigation.navigate('Landing')
+    navigation.navigate('Landing');
+    onPress();
   }
+
+  const {clearSession} = useAuth0();
+
+  const onPress = async () => {
+      try {
+          await clearSession();
+      } catch (e) {
+          console.log(e);
+      }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
