@@ -1,0 +1,28 @@
+{
+    "title": "Bird Descriptions - A JSON file for bird descriptions because finding a bird description API has proven to be difficult",
+    "birds": [
+    {
+        "name": "Common Ostrich",
+        "description": "Massive, conspicuous, flightless bird with long neck and robust legs. Mature males have black-and-white plumage, with pinkish skin, flushed in breeding plumage. Females and immatures are duller gray-brown. Small groups roam open and lightly-wooded country; can walk up to several kilometers a day. The stubby wings are used for spectacular breeding displays and dust-bathing. Deep booming calls can be heard from long distances. Similar Somali Ostrich (no range overlap) has slaty-colored skin and pale eyes, unlike the pink-skinned Common Ostrich.",
+        "image": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/221510791/1200"
+    },
+    {
+        "name": "Somali Ostrich",
+        "description": "A long-legged and long-necked flightless bird. Males have a blue-gray neck and legs, but the bill and front of the legs become pink when breeding. Females have dull pinkish-colored legs and neck. Found in a variety of dry habitats, including grassland, thornscrub, and semi-desert. Often in small groups. Very similar to Common Ostrich, but males separated by their blue legs and neck and the lack of a white ring at the base of the neck. Females are separated by their pale eyes. The voice is a deep, lion-like booming.",
+        "image": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/244378051/1200"
+    },
+    {
+        "name": "Greater Rhea",
+        "description": "The largest bird in South America; resembles an ostrich and is unmistakable. Flightless and appears tailless. Mostly gray-brown overall with very long legs and neck and a proportionally small head. Males have a dark brown crown and blackish lower neck and upperparts. Females have lighter plumage. Juveniles look similar to adults but are smaller. Inhabits open areas with scattered trees and shrubs, such as savannas and pampas, where it can gather in large groups. The males are responsible for incubating the eggs and looking after the chicks.",
+        "image": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/183424001/1200"
+    },
+    {
+        "name": "Lesser Rhea",
+        "description": "This flightless South American relative of the ostriches stands about 5 feet tall with a body about the size of a sheep; no similar species in its range. Rheas roam widely on open Patagonian steppe and also occur locally in open habitats of the Andes, mainly at very high elevations. Can be confiding where used to people, but in other areas wary, running strongly and quickly. Rheas occur singly or in groups, and males take care of the young. Adults have bold pale spots on the body, first-year birds are plainer overall."
+    },
+    {
+        "name": "Tawny-breasted Tinamou",
+        "description": "Plump chickenlike bird found on the ground inside montane forest from extreme western Venezuela to extreme northern Peru. Dark brownish overall with a paler throat, messy vermiculation on the upperparts and flanks, and a warm tawny belly. Occurs from around 1,500m-3,200m, within forest. Very rarely seen. Listen for its song, a series of repeated querulous notes."
+    }
+    ]
+}
