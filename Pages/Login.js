@@ -12,6 +12,23 @@ const Login =  ({navigation}) => {
         navigation.navigate('MyTabs')
     };
 
+    const readUserObject = async () => {
+        try {
+            await Redis.connect({
+                "singleServerConfig": {
+                  "address": "redis://127.0.0.1:6379",
+                  "database": 0
+                }
+              }).then((client) => {
+                client.readObject(state.username).then((val) => {
+                    console.log('redis.readObject = ', val);
+                  });
+        }); }
+         catch (e) {
+            console.log(e);
+        }
+    }
+
     const [state,setState] = useState({
         password: '',
         username: '',
