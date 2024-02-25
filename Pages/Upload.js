@@ -37,7 +37,7 @@ export default function Upload({ navigation }) {
       }
     }
   };
-
+/* 
   const recordVideo = async () => {
     if (camera) {
       try {
@@ -54,7 +54,7 @@ export default function Upload({ navigation }) {
     if (camera) {
       camera.stopRecording();
     }
-  };
+  }; */
 
   return (
     <View style={styles.container}>
@@ -69,7 +69,7 @@ export default function Upload({ navigation }) {
             <MaterialCommunityIcons name="camera-iris" size={30} color="white"></MaterialCommunityIcons>
             <Text style={styles.text}>Photo</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={[styles.button, styles.videoButton]}
             onPress={camera?.isRecording ? stopRecording : recordVideo}
           >
@@ -79,7 +79,7 @@ export default function Upload({ navigation }) {
                 {camera?.isRecording ? 'Stop' : 'Video'}
               </Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </Camera>
     </View>

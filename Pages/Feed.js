@@ -68,7 +68,7 @@ function Feed({route}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F7F7E8',
     padding: 10,
   },
   post: {
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 3,
     padding: 10,
+    backgroundColor: '#fff',
   },
   heading: {
     fontSize: 18,
