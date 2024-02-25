@@ -1,6 +1,15 @@
 import {useAuth0, Auth0Provider} from 'react-native-auth0';
 import { Text, Button } from 'react-native';
 import {DOMAIN, CLIENT_ID} from "@env";
+import { createClient } from 'redis';
+
+const client = createClient({
+    password: 'ZTM2Nmt7W9wFx4NpfCfwZU5RrtliOdtv',
+    socket: {
+        host: 'redis-13378.c323.us-east-1-2.ec2.cloud.redislabs.com',
+        port: 13378
+    }
+});
 
 function Register() {
 
