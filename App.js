@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -14,6 +14,9 @@ import Register from './Pages/Register';
 import Login from './Pages/Login';
 import Landing from './Pages/Landing';
 import Post from './Pages/Post';
+import { openDatabase } from 'expo-sqlite';
+
+const db = openDatabase('mydb.db');
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -78,6 +81,17 @@ function MyTabs({navigation}) {
 }
 
 export default function App({navigation}) {
+
+  useEffect(() => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF EXISTS posts);'
+      );
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, bird TEXT, description TEXT, imageUri TEXT);'
+      );
+    });
+  }, []);
 
   return (
     <NavigationContainer style={styles.container}>
