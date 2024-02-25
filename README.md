@@ -17,3 +17,5 @@ We built our app using React Native, with a primary focus on iOS users. We teste
 ## What's next for Feather
 
 In the future, we would expand our app to include videos and audio of birds so that researchers can also gather bird song data and other behavioral traits to study. We also wanted to implement AI models to identify the birds in the user's media so we could identify the species and tell the user more about this bird. We may explore options to personalize your feed so that you can follow specific users whose posts you would like to see more of. In general, we aim to improve the usability and stability of our project so it can be extended to many other use cases.
+
+Check out our devpost [here](https://devpost.com/software/feather-jpfhn9)!
