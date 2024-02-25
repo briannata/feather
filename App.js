@@ -2,6 +2,8 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -12,9 +14,12 @@ import Upload from './Pages/Upload';
 import Register from './Pages/Register';
 import Login from './Pages/Login';
 import Landing from './Pages/Landing';
+import Post from './Pages/Post';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
+const UploadStack = createNativeStackNavigator();
 
 function MyTabs({navigation}) {
   return (
@@ -34,16 +39,22 @@ function MyTabs({navigation}) {
           ),
         }}
       />
-      <Tab.Screen
+      <Tab.Screen 
         name="Upload"
-        component={Upload}
         options={{
           tabBarLabel: 'Upload',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="video" color={color} size={size} />
+            <MaterialCommunityIcons name="camera" color={color} size={size} />
           ),
-        }}
-      />
+        }}>
+          {() => (
+            <UploadStack.Navigator>
+              <UploadStack.Screen name="Record" component={Upload} />
+              <UploadStack.Screen name="Post" component={Post} />
+            </UploadStack.Navigator>
+          )}
+          
+        </Tab.Screen>
       <Tab.Screen
         name="Encyclopedia"
         component={Encyclopedia}
