@@ -7,22 +7,45 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import {useAuth0, Auth0Provider} from 'react-native-auth0';
+import { Redis } from 'react-native-redis';
 
 const Register =  ({navigation}) => {
 
     const {authorize} = useAuth0();
     
-        const onPress = async () => {
-            try {
-                await authorize();
-            } catch (e) {
-                console.log(e);
-            }
-        };
+    const onPress = async () => {
+        try {
+            await authorize();
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const makeUserObject = async () => {
+        try {
+            await Redis.connect({
+                "singleServerConfig": {
+                  "address": "redis://127.0.0.1:6379",
+                  "database": 0
+                }
+              }).then((client) => {
+                client.saveObject(state.username, {
+                  "username": state.username,
+                  "email": state.email,
+                  "password": state.password,
+                }).then((val) => {
+                  console.log('redis.saveObject = ', val);
+                });
+        }); }
+         catch (e) {
+            console.log(e);
+        }
+    }
 
     const onPressRegister = () => {
         navigation.navigate('MyTabs')
         onPress();
+        makeUserObject();
     };
 
     const [state,setState] = useState({
