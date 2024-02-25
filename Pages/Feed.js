@@ -1,5 +1,6 @@
 import { Text, View } from 'react-native';
 
+
 function Feed({route, navigation}) {
   
     return (

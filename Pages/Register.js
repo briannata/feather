@@ -7,30 +7,39 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-const Login =  ({navigation}) => {
-    const onPressLogin = () => {
-        // navigation.navigate('MyTabs', {
-        //     state: {
-        //         username: state.username,
-        //     }
+const Register =  ({navigation}) => {
+    const onPressRegister = () => {
+        // navigation.navigate('MyTabs',
+        // {
+        //   state: {
+        //     username: state.username,
+        //   }
         // })
         navigation.navigate('MyTabs')
     };
 
     const [state,setState] = useState({
+        email: '',
         password: '',
         username: '',
     })
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Login Page</Text>
+            <Text style={styles.title}>Registration</Text>
             <View style={styles.inputView}>
             <TextInput
                 style={styles.inputText}
                 placeholder="Username"
                 placeholderTextColor="#003f5c"
                 onChangeText={text => setState({username:text})}/>
+            </View>
+            <View style={styles.inputView}>
+            <TextInput
+                style={styles.inputText}
+                placeholder="Email"
+                placeholderTextColor="#003f5c"
+                onChangeText={text => setState({email:text})}/>
             </View>
             <View style={styles.inputView}>
                 <TextInput
@@ -41,9 +50,9 @@ const Login =  ({navigation}) => {
                     onChangeText={text => setState({password:text})}/>
             </View>
             <TouchableOpacity
-                onPress = {onPressLogin}
+                onPress = {onPressRegister}
                 style={styles.loginBtn}>
-            <Text style={styles.loginText}>LOGIN</Text>
+            <Text style={styles.loginText}>SIGN UP</Text>
             </TouchableOpacity>
         </View>
     );
@@ -86,4 +95,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Login;
+export default Register;
