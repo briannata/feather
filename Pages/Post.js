@@ -12,11 +12,11 @@ function Post({route, navigation}) {
     const [description, setDescription] = useState('');
 
     const handleUpload = async () => {
-
+        const timestamp = new Date().toISOString()
         db.transaction(tx => {
             tx.executeSql(
-              'INSERT INTO posts (description, bird, imageUri) VALUES (?, ?, ?);',
-              [description, bird, imageUri],
+              'INSERT INTO posts (description, bird, imageUri, timestamp) VALUES (?, ?, ?, ?);',
+              [description, bird, imageUri, timestamp],
               (_, { insertId }) => {
                 console.log('Inserted post with ID:', insertId);
                 setDescription('');

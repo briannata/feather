@@ -5,11 +5,12 @@ import { openDatabase } from 'expo-sqlite';
 
 const db = openDatabase('mydb.db');
 
-const Post = ({bird, description, imageUri}) => (
+const Post = ({bird, description, imageUri, timestamp}) => (
   <View style={styles.post}>
     {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
     <Text style={styles.heading}>{bird}</Text>
     <Text>{description}</Text>
+    <Text style={styles.timestamp}>{timestamp}</Text>
   </View>
 );
 
@@ -26,11 +27,14 @@ function Feed({route}) {
     db.transaction(tx => {
       tx.executeSql('SELECT * FROM posts ORDER BY id DESC;', [], (_, { rows }) => {
         const formattedPosts = rows._array.map(row => {
+          const date = new Date(row.timestamp);
+          const options = { month: 'long', day: 'numeric', year: 'numeric' };
           return {
             id: row.id,
             bird: row.bird,
             description: row.description,
             imageUri: row.imageUri,
+            timestamp: date.toLocaleString('en-US', options),
           };
         });
         setPosts(formattedPosts);
@@ -45,6 +49,7 @@ function Feed({route}) {
         bird={item.bird}
         description={item.description}
         imageUri={item.imageUri}
+        timestamp={item.timestamp}
       />
     );
   };
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   image: {
     width: '100%',
@@ -91,6 +96,11 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 16,
+  },
+  timestamp: {
+    fontSize: 12,
+    marginTop: 5,
+    color: '#888',
   },
 });
 

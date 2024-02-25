@@ -85,7 +85,7 @@ export default function App({navigation}) {
   useEffect(() => {
     db.transaction(tx => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, bird TEXT, description TEXT, imageUri TEXT);'
+        'CREATE TABLE posts (id INTEGER PRIMARY KEY AUTOINCREMENT, bird TEXT, description TEXT, imageUri TEXT, timestamp DATETIME);'
       );
     });
   }, []);
