@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Feed from './Pages/Feed';
@@ -10,8 +11,11 @@ import Profile from './Pages/Profile';
 import Encyclopedia from './Pages/Encyclopedia';
 import Upload from './Pages/Upload';
 import Landing from './Pages/Landing';
+import Post from './Pages/Post';
 
 const Tab = createBottomTabNavigator();
+
+const UploadStack = createNativeStackNavigator();
 
 function MyTabs({onLogout}) {
   return (
@@ -31,16 +35,22 @@ function MyTabs({onLogout}) {
           ),
         }}
       />
-      <Tab.Screen
+      <Tab.Screen 
         name="Upload"
-        component={Upload}
         options={{
           tabBarLabel: 'Upload',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="video" color={color} size={size} />
+            <MaterialCommunityIcons name="camera" color={color} size={size} />
           ),
-        }}
-      />
+        }}>
+          {() => (
+            <UploadStack.Navigator>
+              <UploadStack.Screen name="Record" component={Upload} />
+              <UploadStack.Screen name="Post" component={Post} />
+            </UploadStack.Navigator>
+          )}
+          
+        </Tab.Screen>
       <Tab.Screen
         name="Encyclopedia"
         component={Encyclopedia}
