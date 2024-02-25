@@ -1,16 +1,10 @@
-import Register from './Register';
-import {
-    Button
-  } from 'react-native';
+import { Text, View } from 'react-native';
 
   const Home = ({navigation}) => {
     return (
-      <Button
-        title="Go to Jane's profile"
-        onPress={() =>
-          navigation.navigate('Register')
-        }
-      />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text onPress={navigation.navigate('Register')}>Home!</Text>
+      </View>
     );
   };
 
