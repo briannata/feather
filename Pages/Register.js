@@ -6,16 +6,23 @@ import {
     TextInput,
     TouchableOpacity,
 } from 'react-native';
+import {useAuth0, Auth0Provider} from 'react-native-auth0';
 
 const Register =  ({navigation}) => {
+
+    const {authorize} = useAuth0();
+    
+        const onPress = async () => {
+            try {
+                await authorize();
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
     const onPressRegister = () => {
-        // navigation.navigate('MyTabs',
-        // {
-        //   state: {
-        //     username: state.username,
-        //   }
-        // })
         navigation.navigate('MyTabs')
+        onPress();
     };
 
     const [state,setState] = useState({
@@ -25,6 +32,7 @@ const Register =  ({navigation}) => {
     })
 
     return (
+        <Auth0Provider domain={"dev-0wyyj1bhaco72a8z.us.auth0.com"} clientId={"R8ADxheKlfMKJCwF82Z7Zd0OuPFA8iey"}>
         <View style={styles.container}>
             <Text style={styles.title}>Registration</Text>
             <View style={styles.inputView}>
@@ -52,9 +60,10 @@ const Register =  ({navigation}) => {
             <TouchableOpacity
                 onPress = {onPressRegister}
                 style={styles.loginBtn}>
-            <Text style={styles.loginText}>SIGN UP</Text>
+            <Text style={styles.loginText} onPress={onPressRegister}>SIGN UP</Text>
             </TouchableOpacity>
         </View>
+        </Auth0Provider>
     );
     }
 const styles = StyleSheet.create({
